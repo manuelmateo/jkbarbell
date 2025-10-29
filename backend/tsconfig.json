@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "./build/",
-    "module": "commonjs",
     "strict": true,
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
