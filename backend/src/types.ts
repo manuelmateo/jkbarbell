@@ -7,6 +7,7 @@ export interface exercise {
 export interface set {
   exercise: exercise;
   reps: number;
+  weight_in_lbs: number;
 }
 
 export interface workout {

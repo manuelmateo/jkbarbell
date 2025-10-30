@@ -36,6 +36,7 @@ router.post("/", (req, res) => {
 
   save_workout(workout)
     .then((saved_item) => {
+      console.log(saved_item);
       res.json(saved_item);
     })
     .catch((_err) => {

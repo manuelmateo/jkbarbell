@@ -29,6 +29,7 @@ export const save_workout = async (new_workout: new_workout) => {
     const db_conn = await get_db_connection();
 
     db_conn.data.workouts.push(new_item);
+    console.log(new_item);
     return new_item;
   } catch {
     throw Error("couldn't save workout");
