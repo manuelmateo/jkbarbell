@@ -1,33 +1,28 @@
-import { createSignal } from "solid-js";
-import solidLogo from "./assets/solid.svg";
-import viteLogo from "/vite.svg";
-import "./styles/App.css";
+import { NavBar } from "./components/NavBar";
 
-function App() {
-  const [count, setCount] = createSignal(0);
-
+const MainHomeContent = () => {
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
+      <div class="container-fluid">
+        <hgroup>
+          <h1 style="color: #687899;">JK Barbell</h1>
+        </hgroup>
+        <blockquote>
+          "BITCH ID RATHER DIE"
+          <footer>
+            <cite>- Skolla</cite>
+          </footer>
+        </blockquote>
       </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <>
+      <NavBar />
+      <MainHomeContent />
     </>
   );
 }

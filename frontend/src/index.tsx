@@ -1,9 +1,9 @@
-/* @refresh reload */
 import { render } from "solid-js/web";
 import { Router, Route } from "@solidjs/router";
-import "./styles/index.css";
+
 import App from "./App.tsx";
-import { Workout } from "./components/Workout.tsx";
+import { CreateWorkoutPage } from "./pages/CreateWorkout.tsx";
+import { ViewWorkoutsPage } from "./pages/ViewWorkouts.tsx";
 
 const root = document.getElementById("root");
 
@@ -15,7 +15,8 @@ render(
   () => (
     <Router>
       <Route path="/" component={App} />
-      <Route path="/workout" component={Workout} />
+      <Route path="/create-workout" component={CreateWorkoutPage} />
+      <Route path="/view-workouts" component={ViewWorkoutsPage} />
     </Router>
   ),
   root!,
