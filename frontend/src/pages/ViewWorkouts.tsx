@@ -1,12 +1,12 @@
 import { NavBar } from "../components/NavBar";
-import { ViewWorkout } from "../components/ViewWorkout";
+import { ViewWorkouts } from "../components/ViewWorkouts";
 
 export const ViewWorkoutsPage = () => {
   return (
     <>
       <NavBar />
       <hr />
-      <ViewWorkout />
+      <ViewWorkouts />
     </>
   );
 };

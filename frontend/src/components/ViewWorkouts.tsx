@@ -1,4 +1,5 @@
 import { createSignal, For } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import { type workout } from "../types";
 import axios from "axios";
 
@@ -24,12 +25,18 @@ const get_date_as_mm_dd_yy_format = (date: Date) => {
 };
 
 export const SingleWorkout = (props: any) => {
+  const navigate = useNavigate();
+
   const workout = props.workout as workout;
   const date_text = get_date_as_mm_dd_yy_format(workout.date);
   let time_text =
     workout.total_time_in_seconds < 60
       ? `${workout.total_time_in_seconds.toFixed(0)}s`
       : `${(workout.total_time_in_seconds / 60).toFixed(0)} min`;
+
+  const redirect_to_full_workout = (id: string) => {
+    navigate("/view-workout");
+  };
 
   return (
     <>
@@ -39,19 +46,29 @@ export const SingleWorkout = (props: any) => {
         </p>
         <ul>
           <For each={workout.sets}>
-            {(item, _index) => (
-              <li class="panel-block">
-                {item.exercise.name}: {item.reps}x{item.weight_in_lbs}lbs
-              </li>
-            )}
+            {(item, _index) =>
+              _index() < 3 ? (
+                <li class="panel-block">
+                  {item.exercise.name}: {item.reps}x{item.weight_in_lbs}lbs
+                </li>
+              ) : (
+                <></>
+              )
+            }
           </For>
+          <li class="panel-block">...</li>
         </ul>
+        <div class="panel-block">
+          <button class="button is-warning is-outlined is-fullwidth">
+            View Details
+          </button>
+        </div>
       </article>
     </>
   );
 };
 
-export const ViewWorkout = () => {
+export const ViewWorkouts = () => {
   const [workout_list, set_workouts] = createSignal([] as workout[]);
 
   axios
