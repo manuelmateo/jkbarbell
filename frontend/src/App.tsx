@@ -3,17 +3,14 @@ import { NavBar } from "./components/NavBar";
 const MainHomeContent = () => {
   return (
     <>
-      <div class="container-fluid">
-        <hgroup>
-          <h1 style="color: #687899;">JK Barbell</h1>
-        </hgroup>
-        <blockquote>
-          "BITCH ID RATHER DIE"
-          <footer>
-            <cite>- Skolla</cite>
-          </footer>
-        </blockquote>
-      </div>
+      <section class="hero is-link is-fullheight-with-navbar">
+        <div class="hero-body">
+          <div class="">
+            <p class="title">JK Barbell</p>
+            <p class="subtitle">All Pain No Gain</p>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

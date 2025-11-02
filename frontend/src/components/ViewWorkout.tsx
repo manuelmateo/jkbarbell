@@ -26,30 +26,27 @@ const get_date_as_mm_dd_yy_format = (date: Date) => {
 export const SingleWorkout = (props: any) => {
   const workout = props.workout as workout;
   const date_text = get_date_as_mm_dd_yy_format(workout.date);
-  const time_text =
+  let time_text =
     workout.total_time_in_seconds < 60
-      ? `${workout.total_time_in_seconds}s`
-      : `${workout.total_time_in_seconds / 60} min`;
+      ? `${workout.total_time_in_seconds.toFixed(0)}s`
+      : `${(workout.total_time_in_seconds / 60).toFixed(0)} min`;
 
   return (
     <>
-      <details name="workout">
-        <summary>
-          "<mark>{workout.name}</mark>" on <i>{date_text}</i> took{" "}
-          <i>{time_text}</i>
-        </summary>
-        <div class="overflow-auto">
-          <ul>
-            <For each={workout.sets}>
-              {(item, _index) => (
-                <li>
-                  {item.exercise.name}: {item.reps}x{item.weight_in_lbs}lbs
-                </li>
-              )}
-            </For>
-          </ul>
-        </div>
-      </details>
+      <article class="panel is-info">
+        <p class="panel-heading">
+          {workout.name} on <i>{date_text}</i> took <i>{time_text}</i>
+        </p>
+        <ul>
+          <For each={workout.sets}>
+            {(item, _index) => (
+              <li class="panel-block">
+                {item.exercise.name}: {item.reps}x{item.weight_in_lbs}lbs
+              </li>
+            )}
+          </For>
+        </ul>
+      </article>
     </>
   );
 };
@@ -67,21 +64,17 @@ export const ViewWorkout = () => {
     });
 
   return (
-    <div class="container-fluid">
-      <article class="container-fluid">
-        <h1>Past Workouts</h1>
-        <hr />
-        <For each={workout_list()}>
-          {(item, _index) => (
-            <>
-              <div class="overflow-auto" style="max-height: 250px">
-                <SingleWorkout workout={item} />
-              </div>
-              <hr />
-            </>
-          )}
-        </For>
-      </article>
+    <div class="container">
+      <h1 class="title">Past Workouts</h1>
+      <hr />
+      <For each={workout_list()}>
+        {(item, _index) => (
+          <>
+            <SingleWorkout workout={item} />
+            <hr />
+          </>
+        )}
+      </For>
     </div>
   );
 };

@@ -5,6 +5,7 @@ export const ViewWorkoutsPage = () => {
   return (
     <>
       <NavBar />
+      <hr />
       <ViewWorkout />
     </>
   );

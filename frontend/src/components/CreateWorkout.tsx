@@ -1,4 +1,4 @@
-import { createSignal, For, Show } from "solid-js";
+import { createSignal, For } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import {
   default_exercises,
@@ -46,56 +46,67 @@ export const AddSet = (props: any) => {
 
   return (
     <>
-      <article>
+      <div class="box" style="height: 350px">
         <form onSubmit={form_submit}>
-          <h3>Add set</h3>
-          <label>
-            Exercise:
-            <select
-              value={current_exercise_name()}
-              onChange={(e) => {
-                const exercise = exercise_list().find(
-                  (exercise) => exercise.name === e.target.value,
-                );
-                set_current_exercise(exercise ? exercise.name : "");
-              }}
-            >
-              <option value="">Pick an exercise:</option>
-              <For each={exercise_list()}>
-                {(item, _index) => (
-                  <option value={item.name}>{item.name}</option>
-                )}
-              </For>
-            </select>
-          </label>
-          <fieldset class="grid">
-            <label>
-              Reps
+          <h3 class="title is-2">Add set</h3>
+          <div class="field">
+            <label class="label">Exercise:</label>
+
+            <div class="control">
+              <div class="select">
+                <select
+                  value={current_exercise_name()}
+                  onChange={(e) => {
+                    const exercise = exercise_list().find(
+                      (exercise) => exercise.name === e.target.value,
+                    );
+                    set_current_exercise(exercise ? exercise.name : "");
+                  }}
+                >
+                  <option value="">Pick an exercise:</option>
+                  <For each={exercise_list()}>
+                    {(item, _index) => (
+                      <option value={item.name}>{item.name}</option>
+                    )}
+                  </For>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field"></div>
+
+          <div class="field is-grouped">
+            <div class="control">
+              <label class="label">Reps</label>
               <input
+                class="input"
                 placeholder="reps"
                 required
                 value={rep_count()}
                 onInput={(e) => set_rep_count(Number(e.currentTarget.value))}
               />
-            </label>
+            </div>
 
-            <label>
-              Weight
+            <div class="control">
+              <label class="label">Weight</label>
               <input
+                class="input"
                 placeholder={"lbs"}
                 required
                 value={weight_in_lbs()}
                 onInput={(e) => set_weight(Number(e.currentTarget.value))}
               />
-            </label>
-          </fieldset>
+            </div>
+          </div>
+
           <footer>
-            <button type="submit" class="secondary">
+            <button type="submit" class="button is-link">
               Add Set
             </button>
           </footer>
         </form>
-      </article>
+      </div>
     </>
   );
 };
@@ -125,19 +136,29 @@ export const CreateWorkout = () => {
   };
 
   return (
-    <article class="container-fluid">
-      <form onSubmit={form_submit}>
-        <h1>Workout</h1>
-        <hr />
-        <fieldset class="grid">
-          <Show when={sets().length > 0}>
-            <div class="overflow-auto" style="max-height: 30em">
-              <table class="striped">
+    <>
+      <section class="hero">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <p class="title">Workout</p>
+            <p class="subtitle">Create a workout</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="fixed-grid">
+        <div class="grid">
+          <div class="box">
+            <div
+              class="table-container"
+              style="height: 310px; overflow-y: scroll"
+            >
+              <table class="table is-fullwidth">
                 <thead>
                   <tr>
-                    <th scope="col">Exercise</th>
-                    <th scope="col">Reps</th>
-                    <th scope="col">Weights</th>
+                    <th>Exercise</th>
+                    <th>Reps</th>
+                    <th>Weights</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -153,15 +174,21 @@ export const CreateWorkout = () => {
                 </tbody>
               </table>
             </div>
-          </Show>
+          </div>
 
           <AddSet set_sets={set_sets} />
-        </fieldset>
+        </div>
         <hr />
-        <footer>
-          <button type="submit">Submit Workout</button>
-        </footer>
-      </form>
-    </article>
+
+        <form onSubmit={form_submit}>
+          <button
+            class="button is-warning is-dark is-large is-fullwidth"
+            type="submit"
+          >
+            Submit Workout
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
