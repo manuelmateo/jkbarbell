@@ -137,57 +137,59 @@ export const CreateWorkout = () => {
 
   return (
     <>
-      <section class="hero">
-        <div class="hero-body">
-          <div class="container has-text-centered">
-            <p class="title">Workout</p>
-            <p class="subtitle">Create a workout</p>
-          </div>
-        </div>
-      </section>
-
-      <div class="fixed-grid">
-        <div class="grid">
-          <div class="box">
-            <div
-              class="table-container"
-              style="height: 310px; overflow-y: scroll"
-            >
-              <table class="table is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>Exercise</th>
-                    <th>Reps</th>
-                    <th>Weights</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <For each={sets()}>
-                    {(item, _index) => (
-                      <tr>
-                        <th scope="row">{item.exercise.name}</th>
-                        <td>{item.reps}</td>
-                        <td>{item.weight_in_lbs}</td>
-                      </tr>
-                    )}
-                  </For>
-                </tbody>
-              </table>
+      <div class="box container">
+        <section class="hero">
+          <div class="hero-body">
+            <div class="container has-text-centered">
+              <p class="title">Workout</p>
+              <p class="subtitle">Create a workout</p>
             </div>
           </div>
+        </section>
 
-          <AddSet set_sets={set_sets} />
+        <div class="fixed-grid">
+          <div class="grid">
+            <div class="box">
+              <div
+                class="table-container"
+                style="height: 310px; overflow-y: scroll"
+              >
+                <table class="table is-fullwidth">
+                  <thead>
+                    <tr>
+                      <th>Exercise</th>
+                      <th>Reps</th>
+                      <th>Weights</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <For each={sets()}>
+                      {(item, _index) => (
+                        <tr>
+                          <th scope="row">{item.exercise.name}</th>
+                          <td>{item.reps}</td>
+                          <td>{item.weight_in_lbs}</td>
+                        </tr>
+                      )}
+                    </For>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <AddSet set_sets={set_sets} />
+          </div>
+          <hr />
+
+          <form onSubmit={form_submit}>
+            <button
+              class="button is-warning is-dark is-large is-fullwidth"
+              type="submit"
+            >
+              Submit Workout
+            </button>
+          </form>
         </div>
-        <hr />
-
-        <form onSubmit={form_submit}>
-          <button
-            class="button is-warning is-dark is-large is-fullwidth"
-            type="submit"
-          >
-            Submit Workout
-          </button>
-        </form>
       </div>
     </>
   );

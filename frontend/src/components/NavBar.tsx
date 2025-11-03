@@ -17,6 +17,9 @@ export const NavBar = () => {
             <div class="navbar-end">
               <div class="navbar-item">
                 <div class="buttons">
+                  <A href="/wns-calculator" class="button is-dark">
+                    WNS Calculator
+                  </A>
                   <A href="/create-workout" class="button is-dark">
                     Start Workout
                   </A>

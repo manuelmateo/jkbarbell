@@ -4,6 +4,7 @@ import { Router, Route } from "@solidjs/router";
 import App from "./App.tsx";
 import { CreateWorkoutPage } from "./pages/CreateWorkout.tsx";
 import { ViewWorkoutsPage } from "./pages/ViewWorkouts.tsx";
+import { WeeklyCalculatorPage } from "./pages/WeeklyCalculator.tsx";
 
 const root = document.getElementById("root");
 
@@ -17,6 +18,7 @@ render(
       <Route path="/" component={App} />
       <Route path="/create-workout" component={CreateWorkoutPage} />
       <Route path="/view-workouts" component={ViewWorkoutsPage} />
+      <Route path="/wns-calculator" component={WeeklyCalculatorPage} />
     </Router>
   ),
   root!,

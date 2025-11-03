@@ -81,7 +81,7 @@ export const ViewWorkouts = () => {
     });
 
   return (
-    <div class="container">
+    <div class="container box">
       <h1 class="title">Past Workouts</h1>
       <hr />
       <For each={workout_list()}>
