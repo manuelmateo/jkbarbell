@@ -96,11 +96,11 @@ export const WeeklyCalculator = () => {
             <tbody>
               <tr>
                 <th>Schoenfield</th>
-                <td>{scho_weekly_net_stim()}</td>
+                <td>{scho_weekly_net_stim().toFixed(2)}</td>
               </tr>
               <tr>
                 <th>Pelland</th>
-                <td>{pell_weekly_net_stim()}</td>
+                <td>{pell_weekly_net_stim().toFixed(2)}</td>
               </tr>
             </tbody>
             <tfoot>

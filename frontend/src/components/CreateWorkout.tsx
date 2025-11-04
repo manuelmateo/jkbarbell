@@ -1,4 +1,4 @@
-import { createSignal, For } from "solid-js";
+import { createSignal, For, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 import {
   default_exercises,
@@ -46,13 +46,13 @@ export const AddSet = (props: any) => {
 
   return (
     <>
-      <div class="box" style="height: 350px">
+      <div class="box">
         <form onSubmit={form_submit}>
-          <h3 class="title is-2">Add set</h3>
-          <div class="field">
-            <label class="label">Exercise:</label>
-
+          <h3 class="title is-2 has-text-centered">Add set</h3>
+          <div class="field is-grouped is-grouped-centered">
             <div class="control">
+              <label class="label">Exercise:</label>
+
               <div class="select">
                 <select
                   value={current_exercise_name()}
@@ -74,11 +74,10 @@ export const AddSet = (props: any) => {
             </div>
           </div>
 
-          <div class="field"></div>
-
-          <div class="field is-grouped">
+          <div class="field is-grouped is-grouped-centered">
             <div class="control">
               <label class="label">Reps</label>
+
               <input
                 class="input"
                 placeholder="reps"
@@ -87,9 +86,12 @@ export const AddSet = (props: any) => {
                 onInput={(e) => set_rep_count(Number(e.currentTarget.value))}
               />
             </div>
+          </div>
 
+          <div class="field is-grouped is-grouped-centered">
             <div class="control">
               <label class="label">Weight</label>
+
               <input
                 class="input"
                 placeholder={"lbs"}
@@ -101,7 +103,7 @@ export const AddSet = (props: any) => {
           </div>
 
           <footer>
-            <button type="submit" class="button is-link">
+            <button type="submit" class="button is-link is-fullwidth">
               Add Set
             </button>
           </footer>
@@ -147,49 +149,44 @@ export const CreateWorkout = () => {
           </div>
         </section>
 
-        <div class="fixed-grid">
-          <div class="grid">
-            <div class="box">
-              <div
-                class="table-container"
-                style="height: 310px; overflow-y: scroll"
-              >
-                <table class="table is-fullwidth">
-                  <thead>
+        <div class="box">
+          <div class="table-container">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Exercise</th>
+                  <th>Reps</th>
+                  <th>Weights</th>
+                </tr>
+              </thead>
+              <tbody>
+                <For each={sets()}>
+                  {(item, _index) => (
                     <tr>
-                      <th>Exercise</th>
-                      <th>Reps</th>
-                      <th>Weights</th>
+                      <th scope="row">{item.exercise.name}</th>
+                      <td>{item.reps}</td>
+                      <td>{item.weight_in_lbs}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <For each={sets()}>
-                      {(item, _index) => (
-                        <tr>
-                          <th scope="row">{item.exercise.name}</th>
-                          <td>{item.reps}</td>
-                          <td>{item.weight_in_lbs}</td>
-                        </tr>
-                      )}
-                    </For>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <AddSet set_sets={set_sets} />
+                  )}
+                </For>
+              </tbody>
+            </table>
+            <Show when={sets().length === 0}>
+              <p>Add sets below...</p>
+            </Show>
           </div>
-          <hr />
-
-          <form onSubmit={form_submit}>
-            <button
-              class="button is-warning is-dark is-large is-fullwidth"
-              type="submit"
-            >
-              Submit Workout
-            </button>
-          </form>
         </div>
+        <hr />
+        <AddSet set_sets={set_sets} />
+
+        <form onSubmit={form_submit}>
+          <button
+            class="button is-warning is-dark is-large is-fullwidth"
+            type="submit"
+          >
+            Submit Workout
+          </button>
+        </form>
       </div>
     </>
   );
