@@ -61,6 +61,9 @@ export const NavBar = () => {
                 <A href="/view-stats" class="button is-dark">
                   View Stats
                 </A>
+                <A href="/add-exercise" class="button is-dark">
+                  Add Exercise
+                </A>
               </div>
             </div>
           </div>
