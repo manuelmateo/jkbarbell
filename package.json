@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@solidjs/router": "^0.15.3",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19"
+  }
+}

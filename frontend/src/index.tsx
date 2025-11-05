@@ -6,6 +6,8 @@ import { CreateWorkoutPage } from "./pages/CreateWorkout.tsx";
 import { ViewWorkoutsPage } from "./pages/ViewWorkouts.tsx";
 import { WeeklyCalculatorPage } from "./pages/WeeklyCalculator.tsx";
 import { StatsOverviewPage } from "./pages/StatsOverview.tsx";
+import { AddExercisePage } from "./pages/AddExercise.tsx";
+
 
 const root = document.getElementById("root");
 
@@ -21,6 +23,7 @@ render(
       <Route path="/view-workouts" component={ViewWorkoutsPage} />
       <Route path="/wns-calculator" component={WeeklyCalculatorPage} />
       <Route path="/view-stats" component={StatsOverviewPage} />
+      <Route path="/add-exercise" component={AddExercisePage} />
     </Router>
   ),
   root!,

@@ -19,3 +19,5 @@ export interface workout {
 }
 
 export type new_workout = Omit<workout, "id">;
+
+export type new_exercise = Omit<exercise, "name">;
