@@ -1,5 +1,5 @@
 import { createSignal, For } from "solid-js";
-import { useNavigate } from "@solidjs/router";
+// import { useNavigate } from "@solidjs/router";
 import { type workout } from "../types";
 import axios from "axios";
 
@@ -25,7 +25,7 @@ const get_date_as_mm_dd_yy_format = (date: Date) => {
 };
 
 export const SingleWorkout = (props: any) => {
-  const navigate = useNavigate();
+  // const _navigate = useNavigate();
 
   const workout = props.workout as workout;
   const date_text = get_date_as_mm_dd_yy_format(workout.date);
@@ -34,9 +34,9 @@ export const SingleWorkout = (props: any) => {
       ? `${workout.total_time_in_seconds.toFixed(0)}s`
       : `${(workout.total_time_in_seconds / 60).toFixed(0)} min`;
 
-  const redirect_to_full_workout = (id: string) => {
-    navigate("/view-workout");
-  };
+  // const _redirect_to_full_workout = (_id: string) => {
+  //   navigate("/view-workout");
+  // };
 
   return (
     <>
